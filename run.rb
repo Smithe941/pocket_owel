@@ -114,7 +114,7 @@ end
 
 def check
   if @health.zero?
-    p "Your Owel is dead. My condolences, you should buy new Owel"
+    p "Your Owel is dead.. My condolences, you should buy new Owel"
     elsif @society.zero?
       p "Your Owel fly away in search of a new friend"
       elsif @energy or @hunger or @hygiene == 0
