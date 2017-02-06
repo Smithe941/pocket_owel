@@ -126,6 +126,3 @@ def check
 end
 end
 
-owl = Owel.new
-owl.meds
-
