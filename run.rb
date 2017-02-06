@@ -20,6 +20,7 @@ def sleep
   @hygiene -= 2
   @society -= 5
   info
+  check
 end
 
 def eat
@@ -29,6 +30,7 @@ def eat
   @wee += 3
   @hygiene -= 1
   info
+  check
 end
 
 def play
@@ -39,12 +41,14 @@ def play
   @hygiene -= 4
   @society += 3
   info
+  check
 end
 
 def toilet
   @wee = 0
   @hygiene -=2
   info
+  check
 end
 
 def love
@@ -52,6 +56,7 @@ def love
   @society += 3
   @hunger -= 2
   info
+  check
 end
 
 def bathe
@@ -59,11 +64,13 @@ def bathe
   @hunger -= 1
   @hygiene = 10
   info
+  check
 end
 
 def meds
   @health = 2
   info
+  check
 end
 
 # secret commands
@@ -77,6 +84,7 @@ def smoke_weed
   @society = 10
   @health = 2
   info
+  check
 end
 
 def listen_placebo
@@ -87,6 +95,7 @@ def listen_placebo
   @hygiene = 10
   @society = 10
   @health = 0
+  info
   p 'Your Owel died happy'
   p 'See You at the Bitter End.'
 end
@@ -101,6 +110,9 @@ def info
   p "Hygiene - #{@hygiene}"
   p "Society - #{@society}"
   p "Health - #{@health}"
+end
+
+def check
   if @health == 0
     p "Your Owel is dead. My condolences, you should buy new Owel"
     elsif @society == 0
@@ -115,5 +127,5 @@ end
 end
 
 owl = Owel.new
-owl.listen_placebo
+owl.meds
 
