@@ -1,6 +1,8 @@
 
 class Owel
   attr_reader :energy, :hunger, :plesure, :wee, :society, :health, :hygiene
+  attr_writer :name
+
 
 def initialize
   @energy = 10
@@ -10,6 +12,7 @@ def initialize
   @hygiene = 10
   @society = 10
   @health = 2
+  @game_over = 1
 end
 
 def sleep
@@ -19,8 +22,6 @@ def sleep
   @wee += 5
   @hygiene -= 2
   @society -= 5
-  info
-  check
 end
 
 def eat
@@ -29,8 +30,6 @@ def eat
   @plesure += 1
   @wee += 3
   @hygiene -= 1
-  info
-  check
 end
 
 def play
@@ -40,40 +39,37 @@ def play
   @wee += 2
   @hygiene -= 4
   @society += 3
-  info
-  check
 end
 
 def toilet
   @wee = 0
   @hygiene -=2
-  info
-  check
 end
 
 def love
   @plesure += 2
   @society += 3
   @hunger -= 2
-  info
-  check
 end
 
 def bathe
   @energy -= 1
   @hunger -= 1
   @hygiene = 10
-  info
-  check
 end
 
 def meds
   @health = 2
-  info
-  check
 end
 
 # secret commands
+
+def wow
+  p 'Во всем виновата сова'
+  p ' ^  ^'
+  p '(O.O)'
+  p '(/ \)'
+end
 
 def smoke_weed
   @energy = 1
@@ -84,7 +80,6 @@ def smoke_weed
   @society = 10
   @health = 2
   info
-  check
 end
 
 def listen_placebo
@@ -96,7 +91,7 @@ def listen_placebo
   @society = 10
   @health = 0
   info
-  p 'Your Owel died happy'
+  p "#{@name} died happy"
   p 'See You at the Bitter End.'
 end
 
@@ -112,17 +107,23 @@ def info
   p "Health - #{@health}"
 end
 
+def help
+  p 'You can use this comands: sleep, eat, play, toilet, love, bathe, meds.'
+end
+
 def check
   if @health.zero?
-    p "Your Owel is dead.. My condolences, you should buy new Owel"
+    p "#{@name} is dead.. My condolences, you should buy new Owel"
     elsif @society.zero?
-      p "Your Owel fly away in search of a new friend"
+      p "#{@name} fly away in search of a new friend"
       elsif @energy or @hunger or @hygiene == 0
         @health -= 1
         elsif @wee >= 10
           @hygiene -= 7
-          p "Your Owel wet oneself, please bathe it"
+          p "#{@name} wet oneself, please bathe it"
   end
 end
+
+
 end
 
