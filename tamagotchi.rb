@@ -127,3 +127,10 @@ class Owel
 
 end
 
+owl = Owel.new
+
+Owel.extend AfterDo
+Owel.after :sleep, :eat, :play, :toilet, :love, :bathe, :meds do
+  owl.info
+  owl.check
+end
