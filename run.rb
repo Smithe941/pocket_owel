@@ -12,10 +12,14 @@ Owel.after :sleep, :eat, :play, :toilet, :love, :bathe, :meds do
   owl.check
 end
 
-while command != "exit"
-  command = gets.chomp
+p 'Enter command'
+k = gets.chomp
+owl.send k.to_sym
 
-end
+# while command != "exit"
+#   command = gets.chomp
+
+# end
 
 
 # p ' ^  ^'
