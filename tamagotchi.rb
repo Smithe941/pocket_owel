@@ -114,17 +114,15 @@ class Owel
   def check
     if @health.zero?
       p "#{@name} is dead.. My condolences, you should buy new Owel"
-      elsif @society.zero?
-        p "#{@name} fly away in search of a new friend"
-        elsif @energy or @hunger or @hygiene == 0
-          @health -= 1
-          elsif @wee >= 10
-            @hygiene -= 7
-            p "#{@name} wet oneself, please bathe it"
+    elsif @society.zero?
+      p "#{@name} fly away in search of a new friend"
+    elsif @energy.zero? || @hunger.zero? || @hygiene.zero?
+      @health -= 1
+    elsif @wee >= 10
+      @hygiene -= 7
+      p "#{@name} wet oneself, please bathe it"
     end
   end
-
-
 end
 
 owl = Owel.new
