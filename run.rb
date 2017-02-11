@@ -11,7 +11,7 @@ owl.name = gets.chomp
 loop do
   p 'Enter command'
 
-  break if (command = gets.chomp) == 'exit'
+  break if (command = gets.chomp.downcase) == 'exit' || owl.alive == true
 
   if owl.respond_to? command.to_sym
     owl.send command.to_sym

@@ -1,6 +1,6 @@
 
 class Owel
-  attr_reader :energy, :hunger, :plesure, :wee, :society, :health, :hygiene
+  attr_reader :energy, :hunger, :plesure, :wee, :society, :health, :hygiene, :death
   attr_writer :name
 
 
@@ -13,6 +13,11 @@ class Owel
     @society = 10
     @health = 2
     @game_over = 1
+    @death = false
+  end
+
+  def alive
+    @death
   end
 
   def sleep
@@ -22,6 +27,8 @@ class Owel
     @wee += 5
     @hygiene -= 2
     @society -= 5
+    info
+    check
   end
 
   def eat
@@ -30,6 +37,8 @@ class Owel
     @plesure += 1
     @wee += 3
     @hygiene -= 1
+    info
+    check
   end
 
   def play
@@ -39,27 +48,37 @@ class Owel
     @wee += 2
     @hygiene -= 4
     @society += 3
+    info
+    check
   end
 
   def toilet
     @wee = 0
     @hygiene -=2
+    info
+    check
   end
 
   def love
     @plesure += 2
     @society += 3
     @hunger -= 2
+    info
+    check
   end
 
   def bathe
     @energy -= 1
     @hunger -= 1
     @hygiene = 10
+    info
+    check
   end
 
   def meds
     @health = 2
+    info
+    check
   end
 
   # secret commands
@@ -80,6 +99,7 @@ class Owel
     @society = 10
     @health = 2
     info
+    check
   end
 
   def listen_placebo
@@ -90,9 +110,11 @@ class Owel
     @hygiene = 10
     @society = 10
     @health = 0
+    @death = true
     info
     p "#{@name} died happy"
     p 'See You at the Bitter End.'
+    check
   end
 
   # service commands
@@ -112,11 +134,12 @@ class Owel
   end
 
   def check
-    if @health.zero?
+    if @health.negative?
+      @death = true
       p "#{@name} is dead.. My condolences, you should buy new Owel"
-    elsif @society.zero?
+    elsif @society.negative?
       p "#{@name} fly away in search of a new friend"
-    elsif @energy.zero? || @hunger.zero? || @hygiene.zero?
+    elsif @energy.negative? || @hunger.negative? || @hygiene.negative?
       @health -= 1
     elsif @wee >= 10
       @hygiene -= 7
@@ -125,10 +148,10 @@ class Owel
   end
 end
 
-owl = Owel.new
+# owl = Owel.new
 
-Owel.extend AfterDo
-Owel.after :sleep, :eat, :play, :toilet, :love, :bathe, :meds do
-  owl.info
-  owl.check
-end
+# Owel.extend AfterDo
+# Owel.after :sleep, :eat, :play, :toilet, :love, :bathe, :meds do
+#   owl.info
+#   owl.check
+# end
