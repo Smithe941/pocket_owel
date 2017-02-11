@@ -6,20 +6,20 @@ command = 0
 p 'named your owel'
 owl.name = gets.chomp
 
-p 'Enter command'
-k = gets.chomp
-owl.send k.to_sym
+# k = gets.chomp
 
-# while command != "exit"
-#   command = gets.chomp
+loop do
+  p 'Enter command'
 
-# end
+  break if (command = gets.chomp) == 'exit'
 
+  if owl.respond_to? command.to_sym
+    owl.send command.to_sym
+  else
+    p 'unknown command, chech help'
+  end
+end
 
 # p ' ^  ^'
 # p '(O.O)'
 # p '(/ \)'
-
-
-
-
